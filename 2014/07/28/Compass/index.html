@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Compass基础 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-Compass" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      Compass基础
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-07-28T03:22:26.000Z" itemprop="datePublished">Jul 28 2014</time>
+      
+    <a class="article-category-link" href="/categories/compass/">compass</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p><a href="http://compass-style.org" target="_blank" rel="external">compass</a> 是一个开源的基于 <a href="http://sass-lang.com" target="_blank" rel="external">sass</a> 的 css 编辑框架；sass 本身只是一个编译器，compass 在它的基础上，封装了一系列有用的模块和模板，在使用的时候直接调用就行了，不需要我们自己再去手动写我们需要的一些常用 css 模块；</p>
+<p>安装 compass 前必须要先安装 ruby，安装好 ruby 后，执行以下命令安装 compass:</p>
+<pre><code><span class="built_in">sudo</span> gem install compass
+</code></pre><p>大陆有可能执行不了，原因都懂的，不过我们可以手动安装：</p>
+<p>直接去 <a href="http://rubygems.org/gems/compass" target="_blank" rel="external">rubygems.org</a> 下载，然后执行本地安装，注意要先下载 compass 的依赖程序，页面最下方有介绍需要哪几个依赖程序；</p>
+<p>安装完后，下面介绍一下 compass 的一些常用命令：</p>
+<ul>
+<li><p><code>compass create jaySite</code></p>
+<p>  创建一个 <code>jaySite</code> 的项目，这样当前目录中会生成一个 jaySite 的目录，里面包含 sass(存放sass源文件) 和 stylesheets(存放编译后的css文件) 两个目录和一个 config.rb 配置文件</p>
+</li>
+<li><p><code>compass compile</code></p>
+<p>  将 sass 编译成 css，还记得上面说的，编译后的 css 文件是保存在 stylesheets 目录内的哟；</p>
+<p>  compass 只编译发生变动过的文件，如果需要重新编译已经编译过的文件，可以加 <code>--force</code> 参数</p>
+<p>  默认编译出来的 css 带有大量的注释，所以我们可以使用 <code>--output-style</code> 参数来选择执行编译的模式：</p>
+<p>  比如，我们有如下一个 <code>jay.scss</code> 源文件：</p>
+<pre><code>  <span class="variable">$baseSize</span><span class="value">: <span class="number">12px</span>;</span>
+
+  <span class="tag">h1</span> {
+      <span class="attribute">font-size</span><span class="value">: <span class="variable">$baseSize</span> * <span class="number">2</span>;</span> <span class="comment">/* double */</span>
+      <span class="tag">span</span> {
+          <span class="attribute">font-size</span><span class="value">: <span class="variable">$baseSize</span>;</span>
+      }
+  }
+</code></pre><ul>
+<li><p>compass compile —output-style compressed，编译成压缩后的 css 适合生产环境使用；</p>
+<pre><code>  <span class="tag">h1</span><span class="rules">{<span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">24px</span></span></span></span>}<span class="tag">h1</span> <span class="tag">span</span><span class="rules">{<span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">12px</span></span></span></span>}
+</code></pre></li>
+<li><p>compass compile —output-style nested —force，编译成嵌套缩进带注释的格式；</p>
+<pre><code>  <span class="comment">/* line 3, ../sass/jay.scss */</span>
+  <span class="tag">h1</span> <span class="rules">{
+      <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">24px</span></span></span>;
+      <span class="comment">/*double;*/</span> <span class="rule">}</span></span>
+      <span class="comment">/* line 6, ../sass/jay.scss */</span>
+      <span class="tag">h1</span> <span class="tag">span</span> <span class="rules">{
+          <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">12px</span></span></span>; <span class="rule">}</span></span>
+</code></pre></li>
+<li><p>compass compile —output-style expanded —force，编译成没有嵌套的、扩展的带注释格式；</p>
+<pre><code>  <span class="comment">/* line 3, ../sass/jay.scss */</span>
+  <span class="tag">h1</span> <span class="rules">{
+      <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">24px</span></span></span>;
+      <span class="comment">/*double;*/</span>
+  <span class="rule">}</span></span>
+  <span class="comment">/* line 6, ../sass/jay.scss */</span>
+  <span class="tag">h1</span> <span class="tag">span</span> <span class="rules">{
+      <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">12px</span></span></span>;
+  <span class="rule">}</span></span>
+</code></pre></li>
+<li><p>compass compile —output-style compact —force，编译成简洁的带注释格式；</p>
+<pre><code>  <span class="comment">/* line 3, ../sass/jay.scss */</span>
+  <span class="tag">h1</span> <span class="rules">{ <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">24px</span></span></span>; <span class="comment">/*double;*/</span> <span class="rule">}</span></span>
+  <span class="comment">/* line 6, ../sass/jay.scss */</span>
+  <span class="tag">h1</span> <span class="tag">span</span> <span class="rules">{ <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">12px</span></span></span>; <span class="rule">}</span></span>
+</code></pre><p>除了使用命令行参数，进行编译外，我们也可以修改 config.rb 这个配置文件来指定编译模式，在文件中加入以下代码：</p>
+<pre><code><span class="attribute">  output_style </span>=<span class="string"> :expanded</span>
+</code></pre><p>如果要去除编译后 css 文件中对应 scss 源文件的来源注释，可以在 config.rb 中设置</p>
+<pre><code>  <span class="variable">line_comments =</span> <span class="constant">false</span>
+</code></pre></li>
+</ul>
+</li>
+<li><p>compass watch</p>
+<p>  运行该命令后，会自动监听 scss 文件的变化，并自动编译成 css 文件</p>
+</li>
+<li><p>关于 compass 的更多学习，可以去<a href="http://compass-style.org/help/tutorials/production-css/" target="_blank" rel="external">官方网站</a>查看或者去看一看阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2012/11/compass.html" target="_blank" rel="external">compass用法指南</a>；</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/compass/">compass</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/sass/">sass</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/scss/">scss</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/07/28/Compass/" data-title="Compass基础" data-url="/2014/07/28/Compass/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

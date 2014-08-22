@@ -1,0 +1,369 @@
+body {
+    font: 14px "Microsoft YaHei", "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #f1f1f1;
+}
+a {
+    color: #333;
+}
+.m-header {
+    background-color: #1d365d;
+    border-bottom-color: #172b4a;
+    margin-bottom: 0;
+}
+.m-header .container .navbar-brand {
+    color: #fff;
+}
+.m-header .container .navbar-brand:hover,
+.m-header .nav li > a:hover,
+.m-header .nav li > a:focus,
+.m-header .nav .open > a:hover,
+.m-header .nav .open > a:focus,
+.m-header .nav .open > a {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.m-header .navbar-collapse {
+    max-height: 10000px;
+}
+.m-header .nav li > a,
+.m-header .nav .open > a {
+    color: #b9c8e0;
+}
+.m-header .nav .dropdown-menu li a {
+    color: #1d365d;
+}
+.m-header .nav .dropdown-menu li a:hover {
+    background-color: #1d365d;
+    color: #fff;
+}
+.m-header .icon-bar {
+    background-color: #fff;
+}
+.m-header .navbar-toggle {
+    border-color: #1a242f;
+}
+.m-header .navbar-toggle:hover,
+.m-header .navbar-toggle:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.m-banner {
+    background: #1d365d url(../images/index_bg.png) center top no-repeat;
+    border-top: 1px solid #2b4367;
+    padding: 2em 0 4em 0;
+}
+.m-banner h1 {
+    color: #fff;
+    font-size: 18px;
+}
+.m-banner h2 {
+    font-size: 14px;
+    color: #b9c8e0;
+}
+.m-footer {
+    border-top: 1px solid #fff;
+    box-shadow: 0 -1px 0 #ddd;
+    padding: 10px 0;
+    font-size: 12px;
+    margin-top: 2px;
+    background-color: #f7f7f7;
+}
+.m-main {
+    padding: 10px 0px;
+}
+.m-main .container {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: #fff;
+    position: relative;
+}
+.m-index-post {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+.m-index-post li {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f1f1f1;
+}
+.m-index-post li:hover,
+.m-index-post li:focus {
+    color: #1d365d;
+}
+.m-index-post li .m-index-post {
+    display: block;
+    padding-bottom: 33px;
+    margin-bottom: -33px;
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+}
+.m-index-post li .post-meta-index {
+    height: 25px;
+    padding-top: 8px;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+.m-index-post li .post-meta-index time {
+    margin-right: 10px;
+}
+.m-index-post li .article-category-link {
+    color: inherit;
+}
+.post-meta {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 0.8em;
+  color: #999;
+  border-bottom: 1px solid #eee;
+}
+.post-meta .article-category {
+  margin-left: 15px;
+}
+.post-footer {
+  padding-top: 5px;
+}
+.site-page-title {
+  margin: 0;
+}
+.post-tag-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  overflow: hidden;
+}
+.post-tag-list-item {
+  float: left;
+  margin-right: 5px;
+}
+.post-tag-list-link {
+  color: #b4b4b4;
+}
+.post-tag-list-link:hover {
+  color: #333;
+}
+.post-tag-list-link:before {
+  content: '#';
+}
+.page-nav {
+  overflow: hidden;
+  margin: 10px 0;
+  padding: 5px;
+  color: #ccc;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .8);
+  border-bottom: 1px solid #ccc;
+}
+.page-nav a {
+  display: inline-block;
+}
+.post-nav-prev {
+  float: left;
+}
+.post-nav-next {
+  float: right;
+}
+.page-nav {
+  text-align: center;
+}
+.page-nav a ,
+.page-nav .current {
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+.page-nav .current {
+  background-color: #1d365d;
+  color: #fff;
+}
+.page-nav .prev {
+  float: left;
+}
+.page-nav .next {
+  float: right;
+}
+/* * Whole page
+********* */
+.whole-categories-list,
+.whole-tags-list {
+    margin: 1em;
+    padding: 1px;
+    list-style: none;
+    overflow: hidden;
+}
+.whole-categories-list li,
+.whole-tags-list li {
+    float: left;
+    width: 150px;
+    border: 1px solid #ccc;
+    margin: 0 -1px -1px 0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.whole-categories-list li a,
+.whole-tags-list li a,
+.whole-categories-list li a:hover,
+.whole-tags-list li a:hover {
+    display: inline-block;
+    padding: 10px 30px 10px 10px;
+    border-radius: 0;
+    color: inherit;
+    background: transparent;
+}
+.whole-categories-list li:hover,
+.whole-tags-list li:hover {
+    background-color: #00B7FF;
+}
+.whole-categories-list li span,
+.whole-tags-list li span {
+    display: inline-block;
+    width: 25px;
+    margin-left: -25px;
+}
+
+/* * syntax highlight
+********* */
+pre,
+code {
+    font-family: "courier new", "Microsoft YaHei", "Source Code Pro", Monaco, Menlo, Consolas, monospace;
+    color: #4d4d4c;
+    background: #eee;
+    font-size: 13px;
+}
+code {
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    padding: 0 5px;
+}
+pre {
+    padding: 10px;
+    line-height: 22px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+pre code {
+    border: none;
+    display: block;
+    padding: 10px;
+    background-color: #23241f;
+    color: #8e908c;
+    overflow: auto;
+}
+.highlight {
+    background: #eee;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    color: #4d4d4c;
+    overflow: auto;
+    margin: 0;
+}
+.highlight figcaption {
+    margin: -5px 0 5px;
+    font-size: 0.9em;
+    color: #999;
+}
+.highlight figcaption:before,
+.highlight figcaption:after {
+    content: "";
+    display: table;
+}
+.highlight figcaption:after {
+    clear: both;
+}
+.highlight figcaption a {
+    float: right;
+}
+.highlight pre {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+.highlight .line {
+    height: 22px;
+}
+figure.highlight .gutter {
+    color: #999;
+    padding-right: 15px;
+    border-right: 1px solid #ddd;
+    text-align: right;
+}
+figure.highlight .code {
+    padding-left: 15px;
+    border-left: 1px solid #fff;
+    color: #666;
+}
+pre .comment {
+    color: #4d4d4d;
+}
+pre .title {
+    color: #8e908c;
+}
+pre .variable,
+pre .attribute,
+pre .tag,
+pre .regexp,
+pre .ruby .constant,
+pre .xml .tag .title,
+pre .xml .pi,
+pre .xml .doctype,
+pre .html .doctype,
+pre .css .id,
+pre .css .class,
+pre .css .pseudo {
+    color: #c82829;
+}
+pre .number,
+pre .preprocessor,
+pre .built_in,
+pre .literal,
+pre .params,
+pre .constant {
+    color: #f5871f;
+}
+pre .class,
+pre .ruby .class .title,
+pre .css .rules .attribute {
+    color: #718c00;
+}
+pre .string,
+pre .value,
+pre .inheritance,
+pre .header,
+pre .ruby .symbol,
+pre .xml .cdata {
+    color: #718c00;
+}
+pre .css .hexcolor {
+    color: #3e999f;
+}
+pre .function,
+pre .python .decorator,
+pre .python .title,
+pre .ruby .function .title,
+pre .ruby .title .keyword,
+pre .perl .sub,
+pre .javascript .title,
+pre .coffeescript .title {
+    color: #4271ae;
+}
+pre .keyword,
+pre .javascript .function {
+    color: #8959a8;
+}
+blockquote {
+    margin: 1em 1em 1em 0;
+    padding: 0.3em;
+    background-color: #fafafa;
+    border-left: 5px solid #eee;
+}
+blockquote p {
+    margin: 0 0 0.5em 0;
+}

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mongoose基础02 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-mongoose_learn02" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      Mongoose基础02
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-07-28T03:53:48.000Z" itemprop="datePublished">Jul 28 2014</time>
+      
+    <a class="article-category-link" href="/categories/mongodb/">mongodb</a>
+
+    </div>
+    <div class="post-content">
+      
+        <h3 id="Model-create(doc(s),_[fn])">Model.create(doc(s), [fn])</h3>
+<p>在 <code>Mongoose之01基础知识.md</code> 一文中，我们知道实例化的模型也就是创建了一个文档；</p>
+<p><code>Model.create(doc(s), [fn])</code> 是创建文档的一个快捷方式，如果文档是有效的，则自动保存到数据库中；</p>
+<p><strong>参数(Parameters)</strong></p>
+<ul>
+<li><p>doc(s) &lt; Array, Object… &gt;</p>
+</li>
+<li><p>[fn] &lt; Function &gt; callback</p>
+<p>  <code>callback</code> 的第一个参数是错误信息，后面的参数是对应的创建的文档信息；</p>
+</li>
+</ul>
+<p><strong>返回值(Returns)</strong></p>
+<a id="more"></a>
+
+<ul>
+<li>&lt; Promise &gt;</li>
+</ul>
+<p><strong>例子(Example)</strong></p>
+<pre><code>//- 创建单条文档，这里的单条不是指一条，而是多个一条一条的用逗号隔；
+Blog.create({ title: <span class="string">'css'</span>， author: <span class="string">'jay'</span> }, { title: <span class="string">'html'</span>, author: <span class="string">'reg'</span> }, <span class="keyword">function</span>(err, docInfo, docInfo2) {
+  <span class="keyword">if</span> (err) //- <span class="keyword">...</span>
+});
+
+//- 使用数组批量创建文档
+var array = [{ title: <span class="string">'css3'</span>, author: <span class="string">'jay'</span> }, { title: <span class="string">'html5'</span>, author: <span class="string">'reg'</span> }];
+Blog.create(array, <span class="keyword">function</span>(err, docInfo, docInfo2) {
+  <span class="keyword">if</span> (err) //- <span class="keyword">...</span>
+});
+
+//- 回调函数是可选的，如果想以后对回调进行操作可以这样
+var promise = Blog.create({ title: <span class="string">'css2.1'</span> });
+promise.then(<span class="keyword">function</span>(docInfo) {
+  //- <span class="keyword">...</span>
+});
+</code></pre><p><strong>注</strong></p>
+<ul>
+<li><p>循环插入单条记录与批量插入相比，消耗时间差别还是很大的，因为单条插入每次需要发送请求头给 <code>MongoDB</code> 数据库服务器，这与前端减少请求数提升性能的原理是一样的；</p>
+</li>
+<li><p>使用 <code>create()</code> 创建文档，不用再单独调用 <code>save()</code> 方法；</p>
+</li>
+<li><p>要想把 <code>save()</code> 或 <code>create()</code> 的集合写入到数据库中，记得要先启动连接 <code>MongoDB</code></p>
+<pre><code>  <span class="keyword">var</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);
+  mongoose.connect(<span class="string">'mongod://localhost/blog'</span>);
+</code></pre></li>
+</ul>
+<h3 id="Model-find(conditions,_[fields],_[options],_[callback])">Model.find(conditions, [fields], [options], [callback])</h3>
+<p><strong>参数(Parameters)</strong></p>
+<ul>
+<li><p>conditions &lt; Object &gt;</p>
+<p>  查询条件，通常是文档，空对象表示查询所有的文档；</p>
+</li>
+<li><p>[fields] &lt; Object, String &gt;  optional fields to select</p>
+<p>  限定查询结果中显示的字段，默认显示所有字段，除非主动限定不显示 <code>_id</code> 字段否则默认会显示的；</p>
+<p>  String，表示时，多个字段用空格分隔；如(‘name age -phone’)</p>
+<p>  Object，表示时，1/!false 表示显示的字段，0/false 表示不显示的字段；如({ name: 1, age: 1, phone: 0 })</p>
+</li>
+<li><p>[options] &lt; Object &gt; optional</p>
+<p>  设置查询选项</p>
+</li>
+<li><p>[callback] &lt; Function &gt;</p>
+<p>  跟 <code>create()</code> 不一样，这里的 <code>callback</code> 第二个参数是所有的文档的一个对象；</p>
+</li>
+</ul>
+<p><strong>返回值(Returns)</strong></p>
+<ul>
+<li>&lt; Query &gt;</li>
+</ul>
+<p><strong>参考(see)</strong></p>
+<ul>
+<li><p>field selection</p>
+</li>
+<li><p>promise</p>
+</li>
+<li><p>setOptions</p>
+</li>
+</ul>
+<p><code>conditions</code> 是在计算他们各自的 SchemaTypes 之前被发送；</p>
+<p><strong>例子(Examples)</strong></p>
+<pre><code><span class="comment">//- 查询 name 为 jay 并且 age 至少 25 的文档</span>
+contactbook.find({ name: <span class="string">'Jay'</span>, age: { $gte: <span class="number">25</span> }});
+
+<span class="comment">//- 在回调函数中立即执行查询的结果</span>
+contactbook.find({ age: { $gte: <span class="number">25</span> }}, <span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+
+<span class="comment">//- 也可以使用正则来匹配哟，牛逼吧</span>
+<span class="comment">//- 查询 name 是 两个字母 的文档，限定查询结果显示的字段为 name 和 age 两个字段，当然 _id 字段是肯定会显示的，所以最终显示 3 个字段</span>
+contactbook.find({ name: <span class="regexp">/^[a-zA-Z]{2}$/i</span> }, <span class="string">'name age'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+
+<span class="comment">//- 等价于：</span>
+
+contactbook.find({ name: <span class="regexp">/^[a-zA-Z]{2}$/i</span> }, {name: <span class="number">1</span>, age: <span class="number">1</span>}, <span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+
+<span class="comment">//- 查询所有文档，限定查询结果不显示 name 字段</span>
+contactbook.find({}, <span class="string">'-name'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+
+<span class="comment">//- 等价于</span>
+
+contactbook.find({}, { name: <span class="number">0</span> }, <span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+
+<span class="comment">//- 设置查询选项： skip = 3 （跳过前 3 项)，输出剩下的项；</span>
+contactbook.find({}， <span class="literal">null</span>, { skip: <span class="number">3</span> }, <span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+
+<span class="comment">//- 明确的执行查询结果；(executing a query explicitly)</span>
+<span class="keyword">var</span> query = contactbook.find({ name: <span class="regexp">/^[a-zA-Z]{2}$/i</span> }, <span class="literal">null</span>, { skip: <span class="number">1</span> });
+query.exec(<span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+
+<span class="comment">//-使用返回的 `promise` 执行一个查询；(using the promise returned from executing a query)</span>
+<span class="keyword">var</span> query = contactbook.find({ name: <span class="regexp">/^[a-zA-Z]{2}$/i</span> }, <span class="literal">null</span>, { skip: <span class="number">1</span> });
+<span class="keyword">var</span> promise = query.exec();
+promise.addBack(<span class="function"><span class="keyword">function</span><span class="params">(err, docs)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(docs);
+});
+</code></pre><p><strong>注</strong></p>
+<pre><code>调用 <span class="escape">`f</span>ind()<span class="escape">` </span>的模型名要跟 <span class="escape">`m</span>odel<span class="escape">` </span>里面定义的名一样，因为这是集合的名字，如果不一样，是查询不到结果的；
+</code></pre><h3 id="Model-findById(id,_[fields],_[options],_[callback])">Model.findById(id, [fields], [options], [callback])</h3>
+<p>通过 <code>id</code> 查询一个单一的文档，其实现内部就是调用的 <code>findOne()</code> 方法</p>
+<pre><code>Model.findById = <span class="function"><span class="keyword">function</span> <span class="title">findById</span> <span class="params">(id, fields, options, callback)</span> </span>{
+  <span class="keyword">return</span> <span class="keyword">this</span>.findOne({ _id: id }, fields, options, <span class="keyword">callback</span>);
+};
+</code></pre><p><strong>参数(Parameters)</strong></p>
+<ul>
+<li><p>id &lt; ObjectId, HexId &gt; objectid, or value that can be casted to one</p>
+</li>
+<li><p>[fields] &lt; Object, String &gt;  optional fields to select</p>
+<p>  限定查询结果中显示的字段，默认显示所有字段，除非主动限定不显示 <code>_id</code> 字段否则默认会显示的；</p>
+<p>  String，表示时，多个字段用空格分隔；如(‘name age -phone’)</p>
+<p>  Object，表示时，1/!false 表示显示的字段，0/false 表示不显示的字段；如({ name: 1, age: 1, phone: 0 })</p>
+</li>
+<li><p>[options] &lt; Object &gt; optional</p>
+<p>  设置查询选项</p>
+</li>
+<li><p>[callback] &lt; Function &gt;</p>
+<p>  跟 <code>create()</code> ，这里的 <code>callback</code> 第二个参数是匹配的文档对象；</p>
+</li>
+</ul>
+<p><strong>返回值(Returns)</strong></p>
+<ul>
+<li>&lt; Query &gt;</li>
+</ul>
+<p><strong>参考</strong></p>
+<ul>
+<li><p>field selection</p>
+</li>
+<li><p>lean queries</p>
+</li>
+</ul>
+<p><strong>例子(Example)</strong></p>
+<pre><code><span class="comment">//- 在 `contactbook` 集合中查找 id='53ccc294440ae3e11d3713d2' 的文档</span>
+contactbook.findById(<span class="string">'53ccc294440ae3e11d3713d2'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, doc)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(doc);
+});
+
+<span class="comment">//- 在 `contactbook` 集合中查找 id='53ccc294440ae3e11d3713d2' 的文档，只显示 name 和 id 字段</span>
+contactbook.findById(<span class="string">'53ccc294440ae3e11d3713d2'</span>, <span class="string">'name'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, doc)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(doc);
+});
+</code></pre><h3 id="Model-findByIdAndRemove(id,_[options],_[callback])">Model.findByIdAndRemove(id, [options], [callback])</h3>
+<p>通过 <code>id</code> 删除数据库中的一个文档</p>
+<p><strong>参数(Parameters)</strong></p>
+<ul>
+<li><p>id &lt; ObjectId, HexString &gt; ObjectId or string that can be cast to one</p>
+</li>
+<li><p>[options] &lt; Object &gt;</p>
+</li>
+<li><p>[callback] &lt; Function &gt;</p>
+<p>  第二个参数是删除那个文档</p>
+</li>
+</ul>
+<p><strong>返回值(Returns)</strong></p>
+<ul>
+<li>&lt; Query &gt;</li>
+</ul>
+<p><strong>参考(see)</strong></p>
+<ul>
+<li><p>Model.findOneAndRemove</p>
+</li>
+<li><p>mongodb</p>
+</li>
+</ul>
+<p><strong>选项(options)</strong></p>
+<ul>
+<li><p><code>sort</code>：</p>
+</li>
+<li><p><code>select</code>：</p>
+</li>
+</ul>
+<p><strong>例子(Examples)</strong></p>
+<pre><code><span class="comment">//- 删除 id = 53ccc294440ae3e11d3713d5 这个的文档</span>
+contactbook.findByIdAndRemove(<span class="string">'53ccc294440ae3e11d3713d5'</span>, <span class="function"><span class="keyword">function</span><span class="params">(err, doc)</span> </span>{
+  <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);
+  <span class="built_in">console</span>.log(doc);
+});
+</code></pre><h3 id="Model-findByIdAndUpdate(id,_[update],_[options],_[callback])">Model.findByIdAndUpdate(id, [update], [options], [callback])</h3>
+<p><strong>参数(Parameters)</strong></p>
+<p><strong>返回值(Returns)</strong></p>
+<p><strong>参考(See)</strong></p>
+<p><strong>选项(options)</strong></p>
+<p><strong>例子(Examples)</strong></p>
+<h3 id="field_selection">field selection</h3>
+<p>指定文档包含或排除的字段</p>
+<p><strong>参数(Parameters)</strong></p>
+<pre><code>arg &lt; <span class="built_in">Object</span>, <span class="built_in">String</span> &gt;
+</code></pre><p><strong>返回值(Returns)</strong></p>
+<pre><code><span class="input"><span class="prompt">&lt; Query &gt;</span> this</span>
+</code></pre><p><strong>参数(see)</strong></p>
+<pre><code>SchemaType
+</code></pre><p><strong>例子(Example)</strong></p>
+<pre><code><span class="comment">//- 包含 a 和 b， 排除 c</span>
+query.<span class="keyword">select</span>(<span class="string">'a b -c'</span>);
+
+<span class="comment">//- 也可以使用对象表示法，尤其是当字段前面有 '-' 前缀时，1表示包含，0表示排除</span>
+query.<span class="keyword">select</span>({ a: <span class="number">1</span>, b: <span class="number">1</span>, c: <span class="number">0</span> });
+
+<span class="comment">//- force inclusion of field excluded at schema level</span>
+query.<span class="keyword">select</span>(<span class="string">'+path'</span>);
+</code></pre><p><strong>注</strong>：不能用于 distinct().</p>
+<h3 id="promise">promise</h3>
+<p>Promise 构造函数</p>
+<p><strong>参数(Parameters)</strong></p>
+<pre><code>fn &lt; <span class="function"><span class="keyword">Function</span> &gt;</span>
+</code></pre><p><strong>继承(Inherits)</strong></p>
+<pre><code>mpromise
+</code></pre><p><strong>事件(Events)</strong></p>
+<pre><code><span class="escape">`e</span>rr<span class="escape">`：</span>当发出 <span class="escape">`p</span>romise<span class="escape">` </span>被拒绝的时候；
+
+<span class="escape">`c</span>omplete<span class="escape">`：</span>当发出 <span class="escape">`p</span>romise<span class="escape">` </span>被实现的时候；
+</code></pre><p><strong>例子(Example)</strong></p>
+<p>从查询结果中返回 promises:</p>
+<pre><code><span class="keyword">var</span> query = Blog.find({ title: <span class="string">'css'</span> });
+<span class="keyword">var</span> promise = query.exec();
+</code></pre><h3 id="Query#setOptions(options)">Query#setOptions(options)</h3>
+<p>设置查询选项(Sets query options.)</p>
+<p><strong>参数(Parameters)</strong></p>
+<ul>
+<li>options &lt; Object &gt;</li>
+</ul>
+<p><strong>Options</strong></p>
+<p>这些选项都是 <code>MongoDB</code> 的</p>
+<ul>
+<li><p>tailable *</p>
+</li>
+<li><p>sort *</p>
+</li>
+<li><p>limit *</p>
+</li>
+<li><p>skip *</p>
+<p>  跳过</p>
+</li>
+<li><p>maxscan *</p>
+</li>
+<li><p>batchSize *</p>
+</li>
+<li><p>comment *</p>
+</li>
+<li><p>snapshot *</p>
+</li>
+<li><p>hint *</p>
+</li>
+<li><p>slaveOk *</p>
+</li>
+<li><p>lean *</p>
+</li>
+<li><p>safe</p>
+</li>
+</ul>
+<p>星号 (<code>*</code>) 代表一个查询辅助方法是可用的；</p>
+<h3 id="Query#exec([operation],_[callback])">Query#exec([operation], [callback])</h3>
+<p>执行查询</p>
+<p><strong>参数(Parameters)</strong></p>
+<ul>
+<li><p>[operation] &lt; String, Function &gt;</p>
+</li>
+<li><p>[callback] &lt; Function &gt;</p>
+</li>
+</ul>
+<p><strong>返回值(Returns)</strong></p>
+<ul>
+<li>&lt; Promise &gt;</li>
+</ul>
+<p><strong>例子(Examples)</strong></p>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/mongoose/">mongoose</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/node/">node</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/nosql/">nosql</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/sql/">sql</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/07/28/mongoose_learn02/" data-title="Mongoose基础02" data-url="/2014/07/28/mongoose_learn02/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

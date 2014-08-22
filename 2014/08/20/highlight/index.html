@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>highlight为文章的代码添加语法高亮 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-highlight" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      highlight为文章的代码添加语法高亮
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-08-20T06:17:24.000Z" itemprop="datePublished">Aug 20 2014</time>
+      
+    <a class="article-category-link" href="/categories/plug-in/">plug-in</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p>今天在用 <code>jade</code> 加载 <code>markdown</code> 文件时，想实现 <code>markdown</code> 中代码高亮显示；</p>
+<p>因为，以前一直用的 <code>Google Code Prettify</code>，貌似不能高亮解析后的 <code>markdown</code> 中代码；</p>
+<p>最终，选择了 <a href="https://highlightjs.org/" target="_blank" rel="external">highlightjs</a>，目前最新版为 <code>8.1</code> 其功能主要有：</p>
+<ul>
+<li><p>支持 86 种语法和<a href="https://highlightjs.org/static/test.html" target="_blank" rel="external">49种样式</a>；</p>
+</li>
+<li><p>能够自动检测编程语言</p>
+</li>
+<li><p>同时多种语言代码高亮</p>
+</li>
+<li><p>可以用于 Node.js 平台</p>
+</li>
+<li><p>支持任何标签</p>
+</li>
+<li><p>兼容任何的 <code>js</code> 框架</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<p>对于 <code>highlightjs</code> 的使用也是非常的简单：</p>
+<pre><code><span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"/stylesheets/monokai_sublime.css"</span> /&gt;</span>
+//- 引入代码高亮的语法样式，这里引用的是类似 sublime 的样式
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"/javascripts/highlight.min.js"</span>&gt;</span><span class="javascript"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+//- 引入highlight的核心js文件
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">hljs.initHighlightingOnLoad();</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+//- 执行hightlight
+</code></pre><p>把上面三段代码引入到我们的项目就大功告成啦；</p>
+<p><code>highlight</code> 会自动去寻找代码中的 <code>&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;</code> 并高亮其中的代码；</p>
+<p>当然，我们也可以指定高亮的语言类型，类似这样设置 <code>&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;...&lt;/code&gt;&lt;/pre&gt;</code>(以 html 类型高亮)</p>
+<p>同时，我们也可以禁用高亮 <code>&lt;pre&gt;&lt;code class=&quot;no-highlight&quot;&gt;...&lt;/code&gt;&lt;/pre&gt;</code></p>
+<p>如果，我们的代码不放到 <code>&lt;pre&gt;&lt;code&gt;...&lt;/code&gt;&lt;/pre&gt;</code>，<code>highlight</code>也支持自定义显示代码块：</p>
+<pre><code><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript">
+    hljs.configure({ useBR: <span class="literal">true</span> });
+    $(<span class="string">'div.code'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">(i, block)</span> </span>{
+        hljs.highlightBlock(block);
+    });
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</code></pre>
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/jade/">jade</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/markdown/">markdown</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/08/20/highlight/" data-title="highlight为文章的代码添加语法高亮" data-url="/2014/08/20/highlight/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

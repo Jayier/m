@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTML布局之左右结构 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-html_layout_lr" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      HTML布局之左右结构
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-01-19T05:24:43.000Z" itemprop="datePublished">Jan 19 2014</time>
+      
+    <a class="article-category-link" href="/categories/html/">html</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p>在进行 html 结构布局之时，常用到的一种布局结构就是左右结构，比如注册表单之类的(左边标题，右边是表单控件)，还比如常用的1:2:1的结构布局。这些情况下，我们常希望是左(或右)固定，而右(或左)能根据父元素的宽度自适应。</p>
+<a id="more"></a>
+
+<p>像这种结构的，如果是固定布局那直接两边都固定宽度然后 float 一下也就是很简单的，不过我们现在是要根据父元素的宽度自适应。好了，切入正题，上代码：</p>
+<p>HTML结构如下：</p>
+<pre><code><span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"item"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">label</span> <span class="attribute">class</span>=<span class="value">"item-title"</span> <span class="attribute">for</span>=<span class="value">""</span>&gt;</span>邮箱：<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"item-con"</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"input"</span> <span class="attribute">placeholder</span>=<span class="value">"常用邮箱"</span> <span class="attribute">type</span>=<span class="value">"text"</span> /&gt;</span>
+            <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"tips-text"</span>&gt;</span>6~18个字符，可使用字母、数字、下划线，需以字母开头<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"item"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">label</span> <span class="attribute">class</span>=<span class="value">"item-title"</span> <span class="attribute">for</span>=<span class="value">""</span>&gt;</span>密码：<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"item-con"</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"input"</span> <span class="attribute">type</span>=<span class="value">"text"</span> /&gt;</span>
+            <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"tips-text"</span>&gt;</span>6~16个字符，区分大小写<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">li</span> <span class="attribute">class</span>=<span class="value">"item"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">label</span> <span class="attribute">class</span>=<span class="value">"item-title"</span> <span class="attribute">for</span>=<span class="value">""</span>&gt;</span>确认密码：<span class="tag">&lt;/<span class="title">label</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"item-con"</span>&gt;</span>
+            <span class="tag">&lt;<span class="title">input</span> <span class="attribute">class</span>=<span class="value">"input"</span> <span class="attribute">type</span>=<span class="value">"text"</span> /&gt;</span>
+            <span class="tag">&lt;<span class="title">p</span> <span class="attribute">class</span>=<span class="value">"tips-text"</span>&gt;</span>请再次填写密码<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</code></pre><h3 id="用display:_table-cell_模拟_table，IE67不支持">用<code>display: table-cell</code> 模拟 <code>table</code>，<code>IE67</code>不支持</h3>
+<p>CSS：</p>
+<pre><code>    <span class="class">.item</span> <span class="rules">{
+        <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-title</span> <span class="rules">{
+        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;
+        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> right</span></span>;
+        <span class="rule"><span class="attribute">display</span>:<span class="value"> table-cell</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-con</span> <span class="rules">{
+        <span class="rule"><span class="attribute">display</span>:<span class="value"> table-cell</span></span>;
+        <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">5px</span></span></span>;
+    <span class="rule">}</span></span>
+</code></pre><p>显示效果：</p>
+<blockquote>
+<ul> <style scoped="scoped"> ul {padding-left: 0; list-style-type: none; } ul p{margin:0;} .item {display: table; } .item-title {width: 100px; text-align: right; display: table-cell; } .item-con {display: table-cell; padding-left: 5px; } </style> <li class="item"> <label class="item-title" for="">邮箱：</label> <div class="item-con"> <input class="input" placeholder="常用邮箱" type="text"></div> </li> <li class="item"> <label class="item-title" for="">密码：</label> <div class="item-con"> <input class="input" type="text"> <p class="tips-text">6~16个字符，区分大小写</p> </div> </li> <li class="item"> <label class="item-title" for="">确认密码：</label> <div class="item-con"> <input class="input" type="text"> <p class="tips-text">请再次填写密码</p> </div> </li> </ul>
+
+</blockquote>
+<hr>
+<h3 id="左侧标题_float:left，右侧控件_margin-left">左侧标题 <code>float:left</code>，右侧控件 <code>margin-left</code></h3>
+<p>CSS:</p>
+<pre><code>    <span class="class">.item1</span> <span class="rules">{
+        <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-title1</span> <span class="rules">{
+        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;
+        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> right</span></span>;
+        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-con1</span> <span class="rules">{
+        <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100px</span></span></span>;
+        <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">5px</span></span></span>;
+    <span class="rule">}</span></span>
+</code></pre><p>显示效果：</p>
+<blockquote>
+<ul> <style scoped="scoped"> ul {padding-left: 0; list-style-type: none; } ul p{margin:0;} .item1 {overflow: hidden; } .item-title1 {width: 100px; text-align: right; float: left; } .item-con1 {margin-left: 100px; padding-left: 5px; } </style> <li class="item1"> <label class="item-title1" for="">邮箱：</label> <div class="item-con1"> <input class="input" placeholder="常用邮箱" type="text"></div> </li> <li class="item1"> <label class="item-title1" for="">密码：</label> <div class="item-con1"> <input class="input" type="text"> <p class="tips-text">6~16个字符，区分大小写</p> </div> </li> <li class="item1"> <label class="item-title1" for="">确认密码：</label> <div class="item-con1"> <input class="input" type="text"> <p class="tips-text">请再次填写密码</p> </div> </li> </ul>
+
+</blockquote>
+<hr>
+<h3 id="左侧标题float:left，右侧控件overflow:_hidden;">左侧标题<code>float:left</code>，右侧控件<code>overflow: hidden;</code></h3>
+<p>CSS:</p>
+<pre><code>    <span class="class">.item2</span> <span class="rules">{
+        <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-title2</span> <span class="rules">{
+        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;
+        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> right</span></span>;
+        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-con2</span> <span class="rules">{
+        <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">5px</span></span></span>;
+        <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;
+        <span class="rule"><span class="attribute">zoom</span>:<span class="value"> <span class="number">1</span></span></span>; <span class="comment">/* for ie67*/</span>
+    <span class="rule">}</span></span>
+</code></pre><p>显示效果：</p>
+<blockquote>
+<ul> <style scoped="scoped"> ul {padding-left: 0; list-style-type: none; } ul p{margin:0;} .item2 {overflow: hidden; } .item-title2 {width: 100px; text-align: right; float: left; } .item-con2 {padding-left: 5px; overflow: hidden; zoom: 1; /<em> for ie67</em>/ } </style> <li class="item2"> <label class="item-title2" for="">邮箱：</label> <div class="item-con2"> <input class="input" placeholder="常用邮箱" type="text"></div> </li> <li class="item2"> <label class="item-title2" for="">密码：</label> <div class="item-con2"> <input class="input" type="text"> <p class="tips-text">6~16个字符，区分大小写</p> </div> </li> <li class="item2"> <label class="item-title2" for="">确认密码：</label> <div class="item-con2"> <input class="input" type="text"> <p class="tips-text">请再次填写密码</p> </div> </li> </ul>
+
+</blockquote>
+<hr>
+<h3 id="定位">定位</h3>
+<p>CSS:</p>
+<pre><code>    <span class="class">.item3</span> <span class="rules">{
+        <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-title3</span> <span class="rules">{
+        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;
+        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> right</span></span>;
+        <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;
+        <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;
+        <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">0</span></span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.item-con3</span> <span class="rules">{
+        <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">5px</span></span></span>;
+        <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100px</span></span></span>;
+    <span class="rule">}</span></span>
+</code></pre><p>显示效果：</p>
+<blockquote>
+<ul> <style scoped="scoped"> ul {padding-left: 0; list-style-type: none; } ul p{margin:0;} .item3 {position: relative; } .item-title3 {width: 100px; text-align: right; position: absolute; left: 0; top: 0; } .item-con3 {padding-left: 5px; margin-left: 100px; } </style> <li class="item3"> <label class="item-title3" for="">邮箱：</label> <div class="item-con3"> <input class="input" placeholder="常用邮箱" type="text"></div> </li> <li class="item3"> <label class="item-title3" for="">密码：</label> <div class="item-con3"> <input class="input" type="text"> <p class="tips-text">6~16个字符，区分大小写</p> </div> </li> <li class="item3"> <label class="item-title3" for="">确认密码：</label> <div class="item-con3"> <input class="input" type="text"> <p class="tips-text">请再次填写密码</p> </div> </li> </ul>
+</blockquote>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/css/">css</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/html/">html</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/layout/">layout</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/01/19/html_layout_lr/" data-title="HTML布局之左右结构" data-url="/2014/01/19/html_layout_lr/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

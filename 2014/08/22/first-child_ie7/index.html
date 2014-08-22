@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>:first-child 在 IE7 的 Bug | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-first-child_ie7" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      :first-child 在 IE7 的 Bug
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-08-22T02:12:14.000Z" itemprop="datePublished">Aug 22 2014</time>
+      
+    <a class="article-category-link" href="/categories/css/">css</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p>对于结构性伪类选择器 :first-child 的浏览器支持还是蛮好的，IE6 及以下不支持外，其他都支持；</p>
+<p><strong>用法及定义</strong></p>
+<p>:first-child 选择器用于选取属于其父元素的第一个子元素：</p>
+<pre><code><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css">
+<span class="tag">div</span> <span class="pseudo">:first-child</span><span class="rules">{ <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#f00</span></span></span>; <span class="rule">}</span></span>
+// 选择所有 <span class="tag">div</span> 里面的第一个子元素
+
+<span class="tag">div</span> <span class="tag">a</span><span class="pseudo">:first-child</span> <span class="rules">{ <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#ff0</span></span></span>; <span class="rule">}</span></span>
+// 选择所有 <span class="tag">div</span> 里面的第一个子元素并且这个子元素必须是 <span class="tag">a</span> 
+// 如果第一个子元素不是 <span class="tag">a</span> 则不会选择任何元素
+// &lt;<span class="tag">div</span>&gt;&lt;<span class="tag">span</span>&gt;1&lt;/<span class="tag">span</span>&gt;&lt;<span class="tag">a</span>&gt;2&lt;/<span class="tag">a</span>&gt;&lt;<span class="tag">a</span>&gt;3&lt;/<span class="tag">a</span>&gt;&lt;/<span class="tag">div</span>&gt; 像这样是不会选择任何元素的
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+</code></pre><a id="more"></a>
+
+<p><strong>IE7 中的Bug</strong></p>
+<p>在 IE7 中,虽然支持 :first-child，但是存在一个 Bug，如果父元素的第一个子节点是注释的话，那么在 IE7 也 :first-child 就是指的这个注释节点(nodeType为8)，而其他浏览器只会选择元素节点(nodeType为1)：</p>
+<pre><code><span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span>&gt;</span><span class="css">
+<span class="class">.my-div</span> <span class="tag">a</span> <span class="rules">{
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;
+    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">10px</span></span></span>;
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">10px</span></span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#f1f1f1</span></span></span>;
+<span class="rule">}</span></span>    
+<span class="class">.my-div</span> <span class="pseudo">:first-child</span> <span class="rules">{
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#f00</span></span></span>;
+<span class="rule">}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">'my-div'</span> <span class="attribute">id</span>=<span class="value">'myDiv'</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'javascript:;'</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'javascript:;'</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><p>以上的样式是设置 .my-div 里面的 a 的背景颜色为 灰色，而 .my-div 里面的第一个子元素的背景色为 红色，这在 IE7 是没问题的，如果我们把 HTML 结构稍加改动：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">'my-div'</span> <span class="attribute">id</span>=<span class="value">'myDiv'</span>&gt;</span>
+    <span class="comment">&lt;!-- 我是注释 --&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'javascript:;'</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'javascript:;'</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><p>现在 .my-div 里面插入了一段 HTML 注释，这个时候在 IE7 中 :first-child 匹配的就是注释，而其他浏览器匹配的是第一个 a 元素；</p>
+<p>以前都没发现有这个问题，昨天项目上一次偶然的机会才发现，以后要谨记啦！</p>
+<p><strong>参考资料</strong></p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child</a></li>
+<li><a href="http://robertnyman.com/2009/02/04/how-to-solve-first-child-css-bug-in-ie-7/" target="_blank" rel="external">http://robertnyman.com/2009/02/04/how-to-solve-first-child-css-bug-in-ie-7/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/bug/">bug</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/08/22/first-child_ie7/" data-title=":first-child 在 IE7 的 Bug" data-url="/2014/08/22/first-child_ie7/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

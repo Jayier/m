@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Node之 app.js 基础讲解 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-node_basic_express_app" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      Node之 app.js 基础讲解
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-07-28T04:37:35.000Z" itemprop="datePublished">Jul 28 2014</time>
+      
+    <a class="article-category-link" href="/categories/node/">node</a>
+
+    </div>
+    <div class="post-content">
+      
+        <h4 id="模块的注册">模块的注册</h4>
+<ul>
+<li><p>使用 <code>require(packageName)</code> 注册模块；</p>
+<p>  <code>var path = require(&#39;path&#39;);</code>, 注册 <code>path</code> 核心模块；</p>
+<p>  <code>var express = require(&#39;express&#39;);</code>, 注册 ‘express’ 核心模块；</p>
+<p>  <code>var routes = require(&#39;./routes/index&#39;);</code>， 注册用户自定义的模块 <code>index.js</code>；</p>
+<p>  一个点 ( . ) 代表是当前目录， ( ./routes/index ) 意为与当前文件同目录的 <code>routes</code> 目录内的 ‘index.js’文件；</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li><p><code>__dirname</code>获取当前文件的路径</p>
+<p>   <code>app.use(express.static(path.join(__dirname, &#39;public&#39;)));</code>, 设置静态目录为当前文件同目录的 <code>public</code> 目录；</p>
+<p>  然后，就可以直接通过 / 来访问 public 目录内的子目录咯；</p>
+<p>  <code>&lt;link rel=&quot;stylesheet&quot; href=&quot;/stylesheets/style.css&quot; /&gt;</code></p>
+<pre><code>  <span class="built_in">var</span> express <span class="subst">=</span> <span class="keyword">require</span>(<span class="string">'express'</span>);
+  <span class="built_in">var</span> path <span class="subst">=</span> <span class="keyword">require</span>(<span class="string">'path'</span>);
+
+  <span class="built_in">var</span> app <span class="subst">=</span> express();
+
+  app<span class="built_in">.</span><span class="built_in">set</span>(<span class="string">'views'</span>, path<span class="built_in">.</span><span class="keyword">join</span>(__dirname, <span class="string">'views'</span>));
+  <span class="attribute">...</span><span class="attribute">...</span>
+
+  app<span class="built_in">.</span>use(express<span class="built_in">.</span>static(path<span class="built_in">.</span><span class="keyword">join</span>(__dirname, <span class="string">'public'</span>)));
+</code></pre></li>
+</ul>
+<h4 id="URL设置">URL设置</h4>
+<p><strong>一个实例：</strong></p>
+<pre><code><span class="comment">//app.js</span>
+<span class="keyword">var</span> reg_router = <span class="built_in">require</span>(<span class="string">'./routers/reg'</span>); 注册用户自定义的 reg 模块
+......
+
+app.use(<span class="string">'/'</span>, reg_router); 设置 reg 模块内所有的链接为根目录
+
+<span class="comment">//./routers/reg.js</span>
+<span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);
+<span class="keyword">var</span> router = express.Router();
+
+router.get(<span class="string">'/reg_home'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res)</span> </span>{
+    res.render(<span class="string">'reg_ejs'</span>, { title: <span class="string">'Jay.Reg'</span> }); 加载并解析 ejs
+});
+
+<span class="built_in">module</span>.exports = router;
+
+<span class="comment">//./views/reg_ejs.ejs, 内容省略......</span>
+</code></pre><p>启动服务：<code>npm start</code></p>
+<p>浏览器输入：<a href="">http://localhost:3000/reg_home</a>，这样就能查看我们的网页咯；</p>
+<p><strong>重点说明</strong></p>
+<p><code>app.use(&#39;/&#39;), reg_router);</code>, 这里的 ‘/‘ 是自定义的，还可以在 ‘/‘ 后跟一些数字、字母、下划线等；</p>
+<p><code>router.get(&#39;/reg_home&#39;, function...)</code>, 这里的 ‘reg_home’ 也是自定义的；</p>
+<p>这样就构成了我们的页面 url = <code>/reg_home</code></p>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/appjs/">app.js</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/express/">express</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/07/28/node_basic_express_app/" data-title="Node之 app.js 基础讲解" data-url="/2014/07/28/node_basic_express_app/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

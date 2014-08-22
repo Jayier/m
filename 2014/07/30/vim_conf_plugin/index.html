@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vim常用配置与插件安装 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-vim_conf_plugin" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      vim常用配置与插件安装
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-07-30T09:32:54.000Z" itemprop="datePublished">Jul 30 2014</time>
+      
+    <a class="article-category-link" href="/categories/ubuntu/">ubuntu</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p>执行 <code>vim ~/.vimrc</code> 如果这个文件不存在，会自动创建，然后把我们的配置内容放写去；</p>
+<p>以下是我的配置：</p>
+<a id="more"></a>
+
+<pre><code>"不使用vi的键盘模式，而用vim自己的
+<span class="operator"><span class="keyword">set</span> nocompatible
+
+<span class="string">"在处理未保存或只读文件的时候，弹出确认
+set confirm
+
+"</span>侦测文件类型
+filetype <span class="keyword">on</span>
+
+<span class="string">"载入文件类型插件
+filetype plugin on
+
+"</span>为特定文件类型载入相关缩进文件
+filetype indent <span class="keyword">on</span>
+
+<span class="string">"语法高亮
+syntax on
+
+"</span>显示行号
+<span class="keyword">set</span> nu
+
+<span class="string">"在状态行上显示光标所在位置的行号和列号
+set ruler
+
+"</span>在搜索的时候，输入的词句逐字符高亮(类似firefox的搜索)
+<span class="keyword">set</span> incsearch
+
+<span class="string">"继承前一行的缩进方式
+set autoindent
+
+"</span>使用C样式的缩进
+<span class="keyword">set</span> cindent
+
+<span class="string">"自动缩进
+set smartindent
+
+"</span>tab键为<span class="number">2</span>个空格的空间，但是不会转换成空格
+<span class="keyword">set</span> tabstop:<span class="number">2</span>
+<span class="keyword">set</span> softtabstop:<span class="number">2</span>
+<span class="keyword">set</span> shiftwidth:<span class="number">2</span>
+
+<span class="string">"让ejs以html高亮显示
+au BufRead,BufNewFile *.ejs setfiletype html
+
+"</span>使用 ,, 来扩展 emmet
+let g:user_emmet_expandabbr_key = <span class="string">',,'</span></span>
+</code></pre><p><strong>插件直接官方网站下载放到 <code>~/.vim/</code> 目录下或者 <code>~/.vim/plugin</code>目录下</strong></p>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/ide/">ide</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/07/30/vim_conf_plugin/" data-title="vim常用配置与插件安装" data-url="/2014/07/30/vim_conf_plugin/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

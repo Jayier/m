@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSSDOC | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-cssdoc" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      CSSDOC
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-01-16T15:22:23.000Z" itemprop="datePublished">Jan 16 2014</time>
+      
+    <a class="article-category-link" href="/categories/css/">css</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p><code>CSSDOC</code>采用的是<code>DocBlock</code>，一个借鉴自<code>PHPDocumentor</code>项目的术语。一段<code>DocBlock</code>是一段可供人类和机器读取的数据块；</p>
+<p>一段<code>DocBlock</code>以 <code>/**</code> 开头，以空格加 <code>*/</code> 结尾(像正常<code>CSS</code>注释一样)。而它的每一行必须以空格加星号(<code>*</code>)开头，否则将被文档生成器忽略。标签以<code>@</code>开始，紧跟着名字，中间不带空格。标签的描述或值应该放在标签名称之后，前面用空格分开。</p>
+<a id="more"></a>
+
+<p><code>CSSDOC</code>建议，应该在每个<code>CSS</code>文件的开头包含一个文件注释(file comment)，内容是与整个文档相关的元数据。在文件注释中，应该包括文件的标题、描述、标签等信息；在文件注释后面，可加入零或多个区块注释(section comment)，对样式表进行内容相关的区块划分；</p>
+<p>下面是一些常用的<code>CSSDOC</code>标签：</p>
+<pre><code>/<span class="keyword">*</span><span class="keyword">*</span>
+ <span class="keyword">*</span> <span class="comment">@project</span>
+ <span class="keyword">*</span> <span class="comment">@version</span>
+ <span class="keyword">*</span> <span class="comment">@package</span>
+ <span class="keyword">*</span> <span class="comment">@author</span>
+ <span class="keyword">*</span> <span class="comment">@copyright</span>
+ <span class="keyword">*</span> <span class="comment">@cssdoc</span>
+ <span class="keyword">*</span> <span class="comment">@license</span>
+ <span class="keyword">*</span> <span class="comment">@colordef</span>
+ <span class="keyword">*</span> <span class="comment">@subpackage</span>
+ <span class="keyword">*</span> <span class="comment">@section</span>
+ <span class="keyword">*</span> <span class="comment">@subsection</span>
+ <span class="keyword">*</span> <span class="comment">@bugfix</span>
+ <span class="keyword">*</span> <span class="comment">@workaround</span>
+ <span class="keyword">*</span> <span class="comment">@affected</span>
+ <span class="keyword">*</span> <span class="comment">@css-for</span>
+ <span class="keyword">*</span> <span class="comment">@see</span>
+ <span class="keyword">*</span> <span class="comment">@link</span>
+ <span class="keyword">*</span> <span class="comment">@valid</span>
+ <span class="keyword">*</span> <span class="comment">@todo</span>
+ <span class="keyword">*</span> <span class="comment">@date</span>
+ <span class="keyword">*</span> <span class="comment">@lastmodified</span>
+ <span class="keyword">*</span> <span class="comment">@since</span>
+ <span class="keyword">*</span> <span class="comment">@revision</span>
+ <span class="keyword">*</span> <span class="comment">@since-revision</span>
+ <span class="keyword">*</span>/
+</code></pre><p>下面再给一个实例：</p>
+<pre><code><span class="javadoc">/**
+ *<span class="javadoctag">@project</span> jayself
+ *<span class="javadoctag">@author</span> jay.zhang
+ *<span class="javadoctag">@copyright</span> blog.jayself.com
+ *<span class="javadoctag">@colordef</span> #333; main text
+ *<span class="javadoctag">@colordef</span> #2c3e50; links
+ */</span>
+</code></pre><p>国内打不开cssdoc的官网，所以谷歌上找到下面两个网站做为参考：</p>
+<p><a href="http://habrahabr.ru/post/87406/" target="_blank" rel="external">http://habrahabr.ru/post/87406/</a><br><a href="http://webkrauts.de/artikel/2007/stylesheets-kommentieren-mit-cssdoc" target="_blank" rel="external">http://webkrauts.de/artikel/2007/stylesheets-kommentieren-mit-cssdoc</a></p>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/css/">css</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/01/16/cssdoc/" data-title="CSSDOC" data-url="/2014/01/16/cssdoc/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

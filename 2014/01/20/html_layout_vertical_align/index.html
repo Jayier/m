@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTML布局之垂直居中 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-html_layout_vertical_align" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      HTML布局之垂直居中
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-01-20T12:14:46.000Z" itemprop="datePublished">Jan 20 2014</time>
+      
+    <a class="article-category-link" href="/categories/html/">html</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p>css 中虽然有 <code>vertical-align</code> 属性，但是这个属性并非是对布局设置垂直居中用的；</p>
+<p>这里，记录一下自己常用的布局垂直居中的方法：</p>
+<h3 id="设置_display:_table-cell">设置 <code>display: table-cell</code></h3>
+<p>表格单元格的内容默认是垂直居中显示的；所以，我们也可以将一个 div 模拟成一个 td，这样再设置内容垂直居中就行了；不过 IE7以下浏览器不支持 <code>display: table-cell</code>：</p>
+<p>HTML：</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box"</span>&gt;
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"con"</span>&gt;con&lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>CSS:</p>
+<pre><code><span class="class">.box</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> table-cell</span></span>;
+    <span class="rule"><span class="attribute">vertical-align</span>:<span class="value"> middle</span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#03c6a8</span></span></span>;
+<span class="rule">}</span></span>
+<span class="class">.con</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;
+    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#0a727d</span></span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>显示效果：</p>
+<blockquote>
+<div class="box"> <style type="text/css" scoped> .box {width: 100px; height: 100px; display: table-cell; vertical-align: middle; background-color: #03c6a8; } .content {width: 50px; height: 50px; margin: 0 auto; background-color: #0a727d; } </style> <div class="content">div</div> </div>
+
+</blockquote>
+<h3 id="定位">定位</h3>
+<p>定位，主要是设置子元素的 left 和 top 相对于父元素 50%，然后再用 margin-left 和 margin-top 设置其值为子元素宽度的一半；</p>
+<p>HTML：</p>
+<pre><code>&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box02"</span>&gt;
+    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"con02"</span>&gt;con&lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">div</span>&gt;
+</code></pre><p>CSS:</p>
+<pre><code><span class="class">.box02</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;
+    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#03c6a8</span></span></span>;
+<span class="rule">}</span></span>
+<span class="class">.con02</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;
+    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;
+    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">50%</span></span></span>;
+    <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">50%</span></span></span>;
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> -<span class="number">25px</span></span></span>;
+    <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> -<span class="number">25px</span></span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#0a727d</span></span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>显示效果：</p>
+<blockquote>
+<div class="box02"> <style type="text/css">.box02 {width: 100px; height: 100px; position: relative; background-color: #03c6a8; } .con02 {width: 50px; height: 50px; position: absolute; left: 50%; top: 50%; margin-left: -25px; margin-top: -25px; background-color: #0a727d; }</style> <div class="con02">div</div> </div>
+
+</blockquote>
+<h3 id="使用_vertical-align:_middle">使用 vertical-align: middle</h3>
+<p>vertical-align，不能运用于块元素，所以，如果要让 div 使这个属性，首先得设置 div 的 display: inline-block；行内元素如果要有宽、高也得先具有块元素的特性；</p>
+<p>HTML：</p>
+<pre><code><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"box03"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"con03"</span>&gt;</span>con03<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"con03-span"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>/* 两span间不要换行 */
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</code></pre><p>CSS：</p>
+<pre><code><span class="class">.box03</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;
+    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;
+    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#03c6a8</span></span></span>;
+<span class="rule">}</span></span>
+<span class="class">.con03</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;
+    <span class="rule"><span class="attribute">vertical-align</span>:<span class="value"> middle</span></span>;
+<span class="rule">}</span></span>
+<span class="class">.con03-span</span> <span class="rules">{
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">1px</span></span></span>;
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100%</span></span></span>;
+    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> -<span class="number">1px</span></span></span>;
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;
+    <span class="rule"><span class="attribute">vertical-align</span>:<span class="value"> middle</span></span>;
+<span class="rule">}</span></span>
+</code></pre><p>显示效果：</p>
+<blockquote>
+<div class="box03"> <style type="text/css"> .box03 {width: 100px; height: 100px; text-align: center; background-color: #03c6a8; } .con03 {width: 50px; height: 50px; text-align: left; display: inline-block; vertical-align: middle; background-color: #0a727d; } .con03-span {width: 1px; height: 100%; margin-right: -1px; display: inline-block; vertical-align: middle; } </style> <span class="con03">div</span><span class="con03-span"></span> </div>
+</blockquote>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/css/">css</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/html/">html</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/layout/">layout</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/01/20/html_layout_vertical_align/" data-title="HTML布局之垂直居中" data-url="/2014/01/20/html_layout_vertical_align/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

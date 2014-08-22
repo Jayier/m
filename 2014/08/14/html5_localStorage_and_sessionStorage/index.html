@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTML5本地存储 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-html5_localStorage_and_sessionStorage" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      HTML5本地存储
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-08-14T13:22:23.000Z" itemprop="datePublished">Aug 14 2014</time>
+      
+    <a class="article-category-link" href="/categories/html5/">html5</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p>HTML5中的 Web Storage 包括两种存储方式： sessionStorage 和 localStorage 本地离线存储，同域下只能存储 5M 的空间；IE6.7中可以用 UserData 来实现</p>
+<p>sessionStorage 用于本地存储一个会话(session)中的数据，这些数据只有在同个会话中的页面才能访问并且当会话结束后数据也随之销毁，因此 seesionStorage 不是一种持久化的本地存储，仅仅是会话级别的存储；</p>
+<p>localStorage，用于持久化存储本地数据，如果不手动删除则会一直存在，就算把浏览器关了，清了浏览器缓存，关机等十天半个月再开，一样的存在；但是，它只是存在同一个域名下；</p>
+<a id="more"></a>
+
+<h3 id="localStorage_和_sessionStorage操作">localStorage 和 sessionStorage操作</h3>
+<p>localStorage 和 sessionStorage 都具有相同的操作方法：</p>
+<p><strong>注意，下面 value 的值始终是字符串，即使传的是一个数字也会被转换成字符串</strong></p>
+<ul>
+<li><p>localStorage.setItem(“key”, “value”)，设置 key 的值为 value，如果 key 已经存在则更新其值为 value</p>
+<p>  localStorage[“key”] = value，也可以这样设置值，不推荐</p>
+<p>  localStorage.key = value，这样也行，不推荐</p>
+</li>
+<li><p>localStorage.getItem(“key”)，获取 key 的值，如果 key 不存在返回 null</p>
+<p>  localStorage[“key”]，也可以这样获取值，不推荐</p>
+<p>  localStorage.key，这样也可以获取值，不推荐</p>
+</li>
+<li><p>localStorage.removeItem(“key”)，删除 key 对应的数据</p>
+</li>
+<li><p>localStorage.clear()，清空所有 localStorage 保存的数据</p>
+</li>
+<li><p>localStorage.length，数据总量</p>
+</li>
+<li><p>localStorage.key(index)，获取 key</p>
+</li>
+<li><p>存储 JSON 格式数据</p>
+<p>  JSON.stringify(data)，将一个对象转换成 JSON 格式的数据串，返回转换后的串</p>
+<p>  JSON.parse(data)，将数据解析成 js 对象，返回解析后的对象</p>
+</li>
+<li><p>HTML5 的本地存储，还提供了一个 storage 事件，可以对键值对的改变进行监听，如果我们同时打开了同域名下的多个页面，这时在其中一个页面中对 localStorage 有操作，那其它同域的页面就会触发这个事件</p>
+<p>  对于事件对象 e，是一个 StorageEvent 对象，提供了一些实用的属性，可以很好的观察键值对的变化：</p>
+<ul>
+<li><p>e.key，被修改的键名</p>
+</li>
+<li><p>e.oldValue，被修改的键对应的旧的值</p>
+</li>
+<li><p>e.newValue，被修改的键对应的新的值</p>
+</li>
+<li><p>e.url，解发 storage 事件的 url</p>
+</li>
+<li><p>e.storageArea，当前 Storage 的引用(session 或 local)</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/html5/">html5</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/localStorage/">localStorage</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/sessionStorage/">sessionStorage</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/08/14/html5_localStorage_and_sessionStorage/" data-title="HTML5本地存储" data-url="/2014/08/14/html5_localStorage_and_sessionStorage/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

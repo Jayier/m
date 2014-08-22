@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>针对移动端的一些常用 &lt;meta&gt; 讲解 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-meta" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      针对移动端的一些常用 &lt;meta&gt; 讲解
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-03-22T10:40:23.000Z" itemprop="datePublished">Mar 22 2014</time>
+      
+    <a class="article-category-link" href="/categories/html/">html</a>
+
+    </div>
+    <div class="post-content">
+      
+        <h3 id="手持设备通用meta">手持设备通用meta</h3>
+<ul>
+<li><p><code>&lt;meta content=&quot;telephone=no&quot; name=&quot;format-detection&quot; /&gt;</code></p>
+<p>  用于设定是否将网页内容中的手机号码显示为拨号的超链接，iPhone上默认为yes；</p>
+</li>
+<li><p><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0&quot; /&gt;</code></p>
+</li>
+</ul>
+<a id="more"></a>
+
+<pre><code><span class="bullet">- </span><span class="code">`width`</span>，viewport的宽度；
+
+<span class="bullet">- </span><span class="code">`height`</span>，viewport的高度；
+
+<span class="bullet">- </span><span class="code">`initial-scale`</span>，初始的缩放比例；
+
+<span class="bullet">- </span><span class="code">`minimum-scale`</span>，允许用户缩放到的最小比例；
+
+<span class="bullet">- </span><span class="code">`maximum-scale`</span>，允许用户缩放到的最大比例；
+
+<span class="bullet">- </span><span class="code">`user-scalable`</span>，用户是否可以手动缩放；
+</code></pre><h3 id="IOS设备对meta定义的私有属性">IOS设备对meta定义的私有属性</h3>
+<p>在iOS中有两个<code>meta</code>值，<code>apple-mobile-web-app-capable</code>和<code>apple-mobile-web-app-status-bar-style</code>，这两个会让网页内容以应用程序风格显示，并使状态栏透明。</p>
+<ul>
+<li><p><code>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;</code></p>
+</li>
+<li><p><code>&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;</code></p>
+</li>
+</ul>
+<p>两个都设置则网站开启对<a href="http://baike.baidu.com/view/8346651.htm" target="_blank" rel="external">web app</a>程序的支持，外界通称该应用为“离线APP”;</p>
+<p>该meta可以看出内容为“苹果设备web应用程序”，就是说该meta是专门定义web应用的；</p>
+<p><code>apple-mobile-web-app-status-bar-style</code>的<code>content</code>默认值为default(白色)，可以定为black(黑色)和black-translucent(灰色半透明)。</p>
+<p>注意： 若值为”black-translucent”将会占据页面px位置，浮在页面上方(会覆盖页面20px高度iphone4和itouch4的Retina屏幕为40px)</p>
+<ul>
+<li><p><code>&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;default&quot; /&gt;</code>显示效果如下：</p>
+<p>  <img src="/images/default.png" alt="alt content=default"></p>
+</li>
+<li><p><code>&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black&quot; /&gt;</code>显示效果如下：</p>
+<p>  <img src="/images/black.png" alt="alt content=black"></p>
+</li>
+<li><p><code>&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black-translucent&quot; /&gt;</code>显示效果如下：</p>
+<p>  <img src="/images/black_translucent.png" alt="alt content=black-translucent"></p>
+</li>
+<li><p><code>&lt;meta name=&quot;apple-touch-fullscreen&quot; content=&quot;yes&quot; /&gt;</code></p>
+<p>  如果把一个web app添加到了主屏幕中，那么从主屏幕中打开这个web app则全屏显示</p>
+</li>
+<li><p><code>&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;/static/images/identity/HTML5_Badge_64.png&quot; /&gt;</code></p>
+</li>
+<li><p><code>&lt;link rel=&quot;apple-touch-icon-precomposed&quot; href=&quot;/static/images/identity/HTML5_Badge_64.png&quot; /&gt;</code></p>
+<p>  定义添加到主屏幕后的图标样式，唯一的区别是<code>*-precomposed</code>不会运用IOS默认的圆角和调光；</p>
+<p>  apple-touch-icon 标签支持sizes属性，可以用来放置对应不同的设备：</p>
+<ul>
+<li>57×57（默认值）的图标对应320×640的iPhone老设备，</li>
+<li>72×72对应iPad，</li>
+<li><p>114×114对应retina屏的iPhone及iTouch。ipad3对应144×144的高分辨率。</p>
+<p>所以最完善的写法应该是：</p>
+<pre><code>  &lt;link <span class="variable">rel=</span><span class="string">"apple-touch-icon"</span> <span class="variable">sizes=</span><span class="string">"57x57"</span> <span class="variable">href=</span><span class="string">"touch-icon-iphone.png"</span> /&gt;
+  &lt;link <span class="variable">rel=</span><span class="string">"apple-touch-icon"</span> <span class="variable">sizes=</span><span class="string">"72x72"</span> <span class="variable">href=</span><span class="string">"touch-icon-ipad.png"</span> /&gt;
+  &lt;link <span class="variable">rel=</span><span class="string">"apple-touch-icon"</span> <span class="variable">sizes=</span><span class="string">"114x114"</span> <span class="variable">href=</span><span class="string">"touch-icon-iphone4.png"</span> /&gt;
+  &lt;link <span class="variable">rel=</span><span class="string">"apple-touch-icon"</span> <span class="variable">sizes=</span><span class="string">"144x144"</span> <span class="variable">href=</span><span class="string">"apple-touch-icon-ipad3-144.png"</span> /&gt;
+</code></pre><p>虽然官方都用的png图片做说明，但实际测试jpg格式也可用（不推荐），图片无需做圆角和高光效果，同Native App一样，系统会自动为图标添加圆角及高光。如果不想系统对图标添加效果，可以用<code>apple-touch-icon-precomposed</code>代替<code>apple-touch-icon</code>，这时我们提供的图标就要自己做圆角和高亮效果了。</p>
+<p>图标搜索的优先级如下：</p>
+</li>
+<li><p>如果没有跟相应设备推荐尺寸一致的图标，那个会优先使用比推荐尺寸大，但最接近推荐尺寸的图标。</p>
+</li>
+<li>如果没有比推荐尺寸大的图标，会优先选择最接近推荐尺寸的图标。</li>
+<li>如些有多个图标符合推荐尺寸，会优先选择包含关键字precomposed的图标。</li>
+<li><p>如果未在区域指定用link标签指定图标，会自动搜索网站根目录下有apple-touch-icon…或者 apple-touch-icon-precomposed…前缀的图标。</p>
+<p>如设备推荐尺寸为57x57,优先级如下：</p>
+<pre><code>  apple-touch-<span class="attribute">icon</span>-57×57-precomposed<span class="class">.png</span>
+  apple-touch-<span class="attribute">icon</span>-57×57<span class="class">.png</span>
+  apple-touch-<span class="attribute">icon</span>-precomposed<span class="class">.png</span>
+  apple-touch-<span class="attribute">icon</span><span class="class">.png</span>
+</code></pre><p>在第三代 iPad 上有四种图标规格： 57x57, 72x72, 114x114, 144x144.</p>
+<p>由于 retina 图标的尺寸是标准图标大小的2倍，因此实际上我们只需要只做2款图标即可：114 x 114 和 144 x 144 。</p>
+<p>将retina 图标的大小设置成标准图标的尺寸，那么IOS就会根据情况自动进行缩放了。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/html/">html</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/web-app/">web app</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/03/22/meta/" data-title="针对移动端的一些常用 &lt;meta&gt; 讲解" data-url="/2014/03/22/meta/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

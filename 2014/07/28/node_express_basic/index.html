@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Express4.x基础 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-node_express_basic" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      Express4.x基础
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-07-28T04:42:03.000Z" itemprop="datePublished">Jul 28 2014</time>
+      
+    <a class="article-category-link" href="/categories/node/">node</a>
+
+    </div>
+    <div class="post-content">
+      
+        <h3 id="在线安装_express">在线安装 express</h3>
+<p>首先，要确保电脑上安装好了 <code>nodejs</code> 和 <code>npm</code>；</p>
+<h4 id="Ubuntu下安装">Ubuntu下安装</h4>
+<ol>
+<li><p>Ctrl + Alt + T，打开终端；</p>
+</li>
+<li><p>输入 <code>sudo apt-get install nodejs</code>；</p>
+</li>
+<li><p>输入 <code>sudo apt-get install nodejs-legacy</code>；</p>
+</li>
+<li><p>输入 <code>sudo apt-get install npm</code>；</p>
+</li>
+</ol>
+<a id="more"></a>
+
+<ol>
+<li><p>输入 <code>sudo npm install -g express</code>；</p>
+</li>
+<li><p>输入 <code>sudo npm install -g express-generator</code>；</p>
+</li>
+<li><p>输入 <code>node -v</code> 查看 <code>node</code> 的版本；</p>
+</li>
+<li><p>输入 <code>express -V</code> (大写的V)查看 <code>express</code> 的版本；</p>
+</li>
+<li><p>输入 <code>npm cache clean</code> 清理 <code>npm</code> 的缓存；</p>
+</li>
+<li><p>输入 <code>sudo apt-get install mongodb-clients</code>；</p>
+</li>
+<li><p>输入 <code>sudo apt-get install mongodb-server</code>；</p>
+</li>
+<li><p>10和11是安装 <code>mongodb</code> 数据库；</p>
+</li>
+<li><p>输入 <code>mongo</code> 启动 <code>mongodb</code> 数据库； 输入 <code>exit</code> 退出数据库；</p>
+</li>
+<li><p>输入 <code>sudo npm install -g mongoose</code>， 安装 <code>mongodb</code> 的 <code>node</code> 驱动；</p>
+</li>
+</ol>
+<h4 id="Windows下安装">Windows下安装</h4>
+<ul>
+<li><p>对于 <code>node</code> 和 <code>mongodb</code>，直接下载 <code>.exe</code> 文件一步步安装就好了；</p>
+</li>
+<li><p>对于 <code>express</code>、<code>express-generator</code> 和 <code>mongoose</code> 安装方法跟 Ubuntu 下一样，只是要去掉 <code>sudo</code>， 直接 <code>npm</code> 安装；</p>
+</li>
+</ul>
+<h3 id="创建新项目">创建新项目</h3>
+<ul>
+<li><p><code>express jaySite</code></p>
+<p>  创建一个 <code>jaySite</code> 项目； 模板为 <code>.jade</code>， 样式为 <code>.css</code>；</p>
+</li>
+<li><p><code>express -e jaySite</code></p>
+<p>  创建一个 <code>jaySite</code> 项目； 模板为 <code>.ejs</code>， 样式为 <code>.css</code>；</p>
+</li>
+<li><p><code>express -c compass jaySite</code></p>
+<p>  创建一个 <code>jaySite</code> 项目； 模板为 <code>.jade</code>， 样式为 <code>.scss</code>；</p>
+</li>
+<li><p><code>express -c less jaySite</code></p>
+<p>  创建一个 <code>jaySite</code> 项目； 模板为 <code>.jade</code>， 样式为 <code>.less</code>；</p>
+</li>
+<li><p><code>express -c stylus jaySite</code></p>
+<p>  创建一个 <code>jaySite</code> 项目； 模板为 <code>.jade</code>， 样式为 <code>.styl</code>；</p>
+</li>
+<li><p><code>express -e -c compass jaySite</code></p>
+<p>  创建一个 <code>jaySite</code> 项目； 模板为 <code>.ejs</code>， 样式为 <code>.scss</code>；</p>
+</li>
+<li><p>最后我们创建一个 <code>jaySite</code> 项目； 模板为 <code>.jade</code>， 样式为 <code>.scss</code>；</p>
+<pre><code>  $ express -e -c compass jaySite
+
+     <span class="operator"><span class="keyword">create</span> : jaySite
+     <span class="keyword">create</span> : jaySite/package.json
+     <span class="keyword">create</span> : jaySite/app.js
+     <span class="keyword">create</span> : jaySite/<span class="keyword">public</span>
+     <span class="keyword">create</span> : jaySite/<span class="keyword">public</span>/javascripts
+     <span class="keyword">create</span> : jaySite/<span class="keyword">public</span>/images
+     <span class="keyword">create</span> : jaySite/<span class="keyword">public</span>/stylesheets
+     <span class="keyword">create</span> : jaySite/<span class="keyword">public</span>/stylesheets/style.scss
+     <span class="keyword">create</span> : jaySite/routes
+     <span class="keyword">create</span> : jaySite/routes/<span class="keyword">index</span>.js
+     <span class="keyword">create</span> : jaySite/routes/users.js
+     <span class="keyword">create</span> : jaySite/views
+     <span class="keyword">create</span> : jaySite/views/<span class="keyword">index</span>.jade
+     <span class="keyword">create</span> : jaySite/views/error.jade
+     <span class="keyword">create</span> : jaySite/<span class="keyword">bin</span>
+     <span class="keyword">create</span> : jaySite/<span class="keyword">bin</span>/www
+
+     <span class="keyword">install</span> dependencies:
+       $ cd jaySite &amp;&amp; npm <span class="keyword">install</span>
+
+     run the app:
+       $ DEBUG=jaySite ./<span class="keyword">bin</span>/www</span>
+</code></pre></li>
+<li><p>创建完一个项目后，还需要安装项目的程序依赖包</p>
+<ul>
+<li><p><code>cd jaySite</code> 进入项目目录；</p>
+</li>
+<li><p><code>sudo npm install</code> 安装依赖包；</p>
+</li>
+<li><p>执行完之后，项目目录会多一个文件夹 <code>node_modules</code>；</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件及目录说明">文件及目录说明</h3>
+<ul>
+<li><p><code>package.json</code>， 存储着项目的相关信息以及项目依赖的模块；</p>
+</li>
+<li><p><code>app.js</code>， 项目入口， 一些常规的设置；</p>
+</li>
+<li><p><code>public</code>， 静态文件目录，存放 <code>css</code>、<code>js</code>、<code>image</code> 等文件；</p>
+</li>
+<li><p><code>routes</code>， 存放路由的文件目录；路由是什么呢？</p>
+</li>
+<li><p><code>views</code>， 存放视图的文件目录，视图也就是模板(在这里就是存放 <code>.jade</code> 文件的)；</p>
+</li>
+<li><p><code>bin</code>， 里面就一个文件 <code>www</code>， 启动项目用的；</p>
+</li>
+<li><p><code>node_modules</code>， 存放 <code>package.json</code> 文件中列出的程序依赖包，也就是 <code>node</code> 中的模块；</p>
+</li>
+</ul>
+<p><strong>注</strong>： 关于模块，我们可以先在有网络的情况下把常用模块进行全局安装，以后在没有网络的情况新建项目就可以把全局模块拷贝到项目目录内咯；</p>
+<h3 id="启动项目">启动项目</h3>
+<ul>
+<li><p><code>cd jaySite</code></p>
+<p>  一定要先进入到项目目录内；</p>
+</li>
+<li><p><code>npm start</code></p>
+<p>  执行这个条命令，</p>
+<pre><code>  <span class="variable">$ </span>npm start
+<span class="input"><span class="prompt">
+  &gt;</span> jaySite<span class="variable">@0</span>.<span class="number">0</span>.<span class="number">1</span> start /home/reg/<span class="constant">Projects</span>/jaySite</span>
+  &gt; node ./bin/www
+</code></pre><p>  显示如上，说明我们的项目启动成功；</p>
+</li>
+<li><p>在浏览器里输入 <code>localhost:3000</code>，看到如下内容，说明一切OK；</p>
+<pre><code>  Express
+
+  Welcome <span class="keyword">to</span> Express
+</code></pre></li>
+</ul>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/express/">express</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/node/">node</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/07/28/node_express_basic/" data-title="Express4.x基础" data-url="/2014/07/28/node_express_basic/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

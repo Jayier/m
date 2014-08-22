@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>git 常用命令备忘录 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-git" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      git 常用命令备忘录
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-08-03T01:09:56.000Z" itemprop="datePublished">Aug 3 2014</time>
+      
+    </div>
+    <div class="post-content">
+      
+        <h3 id="创建(Create)">创建(Create)</h3>
+<ul>
+<li><p><code>$ git clone git@github.com:jayself/jayselfsite.git</code> 或 <code>git clone https://github.com/jayself/jayselfsite.git</code></p>
+<p>  从一个现有的版本库克隆一份</p>
+</li>
+<li><p><code>$ git init</code></p>
+<p>  把当前目录创建为一个本地版本库</p>
+</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="本地修改(Local_changes)">本地修改(Local changes)</h3>
+<ul>
+<li><p><code>$ git add &lt;file&gt;</code></p>
+<p>  把指定的 <code>&lt;file&gt;</code> 加入到暂存区</p>
+</li>
+<li><p><code>$ git add .</code></p>
+<p>  把当前目录内的所有文件加入到暂存区</p>
+</li>
+<li><p><code>$ git commit -m &quot;描述信息&quot;</code></p>
+<p>  将暂存区中的文件提交到本地版本库</p>
+</li>
+<li><p><code>$ git commit --amend</code></p>
+<p>  在出来的编辑界面修改最后一次提交的描述信息</p>
+</li>
+<li><p><code>$ git status</code></p>
+<p>  用来查看版本库的当前状态</p>
+</li>
+<li><p><code>$ git diff</code></p>
+<p>  用来查看本次修改了哪些内容</p>
+</li>
+</ul>
+<h3 id="提交历史(Commit_History)">提交历史(Commit History)</h3>
+<ul>
+<li><p><code>$ git log</code></p>
+<p>  显示所有提交的日志信息(包括作者、日期、描述信息以及id)</p>
+</li>
+<li><p><code>$ git log -p &lt;file&gt;</code></p>
+<p>  显示指定文件所有的日志信息</p>
+</li>
+<li><p><code>$ git blame &lt;file&gt;</code></p>
+<p>  显示谁在什么时候修改过 <code>&lt;file&gt;</code> 文件，以及修改后提交的描述信息</p>
+</li>
+</ul>
+<h3 id="版本分支与标签(Branches_&amp;_Tags)">版本分支与标签(Branches &amp; Tags)</h3>
+<ul>
+<li><p><code>$ git branch</code></p>
+<p>  显示当前的所有分支</p>
+</li>
+<li><p><code>$ git checkout &lt;branch&gt;</code></p>
+<p>  迁出 <code>&lt;branch&gt;</code> 分支，默认为分支的 <code>HEAD</code> 版本</p>
+</li>
+<li><p><code>$ git branch &lt;new-branch&gt;</code></p>
+<p>  创建一个基于当前 <code>HEAD</code> 版本的新分支</p>
+</li>
+<li><p><code>$ git branch --track &lt;new branch&gt; &lt;remote-branch&gt;</code></p>
+<p>  创建一个基于 <code>&lt;remote-branch&gt;</code> 的新分支</p>
+</li>
+<li><p><code>$ git branch -d &lt;branch&gt;</code></p>
+<p>  删除指定的分支</p>
+</li>
+<li><p><code>$ git tag &lt;tag-name&gt;</code></p>
+<p>  创建一个标签</p>
+</li>
+</ul>
+<h3 id="更新和推送(Update_&amp;_Publish)">更新和推送(Update &amp; Publish)</h3>
+<ul>
+<li><p><code>$ git remote -v</code></p>
+<p>  显示所有的远程版本库</p>
+</li>
+<li><p><code>$ git remote show &lt;remote&gt;</code></p>
+<p>  显示指定的远程版本库的相关信息</p>
+</li>
+<li><p><code>$ git remote add &lt;remote&gt; &lt;url&gt;</code></p>
+<p>  添加一个远程版本库，<code>&lt;remote&gt;</code>是自定义的远程版本库的名称</p>
+</li>
+<li><p><code>$ git fetch &lt;remote&gt;</code></p>
+<p>  获取远程版本库到本地(这时候在本地并不会显示)</p>
+</li>
+<li><p><code>$ git pull &lt;remote&gt; &lt;branch&gt;</code></p>
+<p>  获取最新远程版本库并merge到本地</p>
+</li>
+<li><p><code>$ git push &lt;remote&gt; &lt;branch&gt;</code></p>
+<p>  发布本地变更到远程版本库</p>
+</li>
+<li><p><code>$ git push &lt;remote&gt; :&lt;branch&gt;</code></p>
+<p>  发布本地变更到远程版本库的指定分支上</p>
+</li>
+<li><p><code>$ git push --tags</code></p>
+<p>  发布本地标签到远程版本库</p>
+</li>
+</ul>
+<h3 id="合并&amp;重新定义(Merge_&amp;_Rebase)">合并&amp;重新定义(Merge &amp; Rebase)</h3>
+<ul>
+<li><p><code>$ git merge &lt;branch&gt;</code></p>
+<p>  把一个分支或某个commit的修改合并到现在的分支上</p>
+</li>
+<li><p><code>$ git rebase &lt;branch&gt;</code></p>
+<p>  变更当前 <code>HEAD</code> 到 <code>&lt;branch&gt;</code>上</p>
+</li>
+<li><p><code>$ git rebase --abort</code></p>
+<p>  回到 <code>rebase</code> 执行之前的状态</p>
+</li>
+<li><p><code>$ git rebase --continue</code></p>
+<p>  解决冲突之后，继续执行 <code>rebase</code></p>
+</li>
+<li><p><code>$ git mergetool</code></p>
+<p>  用配置的合并工具来解决冲突</p>
+</li>
+<li><p><code>$ git add &lt;resolved-file&gt;</code></p>
+<p>  手动编辑解决冲突并在解决冲突之后标记保存文件</p>
+</li>
+<li><p><code>$ git rm &lt;resolved-file&gt;</code></p>
+<p>  删除标记保存的文件</p>
+</li>
+</ul>
+<h3 id="撤销(Undo)">撤销(Undo)</h3>
+<ul>
+<li><p><code>$ git reset --hard HEAD</code></p>
+<p>  在工作目录中丢弃所有本地修改</p>
+</li>
+<li><p><code>$ git checkout HEAD &lt;file&gt;</code></p>
+<p>  丢弃指定文件的本地修改</p>
+</li>
+<li><p><code>$ git revert &lt;commit&gt;</code></p>
+<p>  撤销一个提交（撤销会产生一个新的提交）</p>
+</li>
+<li><p><code>$ git reset --hard &lt;commit&gt;</code></p>
+<p>  回退到一个之前的提交，并丢弃之后的所有修改</p>
+</li>
+<li><p><code>$ git reset &lt;commit&gt;</code></p>
+<p>  回退到一个之前的提交，并撤销暂存区的修改（即重新放回工作区）</p>
+</li>
+<li><p><code>$ git reset --keep &lt;commit&gt;</code></p>
+<p>  回退到一个之前的提交，并保留未提交的本地修改</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/08/03/git/" data-title="git 常用命令备忘录" data-url="/2014/08/03/git/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>

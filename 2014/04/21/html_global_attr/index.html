@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTML全局属性 | Jay.Zhang的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="前端程序员, 前端制作, javascript, css, html, jayself, jayzhang">
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="/css/style.css">
+	<link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+  <header class="navbar navbar-static-top m-header">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="/" class="navbar-brand">Jay.Zhang</a>
+			<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".m-nav">
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+					<span class="icon-bar"></span>
+				
+			</button>
+		</div>
+		<nav class="navbar-collapse collapse m-nav">
+			<ul class="nav navbar-nav">
+				
+				<li>
+					<a class="main-nav-link" href="/archives">Archives</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/about">About</a>
+				</li>
+				
+				<li>
+					<a class="main-nav-link" href="/whole">Whole</a>
+				</li>
+				
+			</ul>
+		</nav>
+	</div>
+</header>
+<div class="m-banner">
+  <div class="container">
+    <h1>Jay.Zhang的个人博客</h1>
+    <h2>站起来不是一种行走方式，而是一种人生态度！</h2>
+  </div>
+</div>
+  <main class="m-main">
+    <section class="container">
+  <article id="post-html_global_attr" class="post article-type-post">
+    
+      <header class="post-header">
+        
+  
+    <h3 class="post-title" itemprop="name">
+      HTML全局属性
+    </h3>
+  
+
+      </header>
+    
+    <div class="post-meta">
+      <time datetime="2014-04-21T04:00:45.000Z" itemprop="datePublished">Apr 21 2014</time>
+      
+    <a class="article-category-link" href="/categories/html/">html</a>
+
+    </div>
+    <div class="post-content">
+      
+        <p>全局属性大部分HTML标签都具有这些属性，除了少数几个外，比如<code>&lt;base&gt;</code>、<code>&lt;head&gt;</code>、<code>&lt;html&gt;</code>、<code>&lt;meta&gt;</code>、<code>&lt;param&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;style&gt;</code></p>
+<ul>
+<li>accesskey=”character”，设置访问元素的键盘快捷键，不同浏览器访问键盘快捷键的方式也不同：</li>
+</ul>
+<a id="more"></a>
+
+<pre><code>![alt accesskey=<span class="keyword">character</span>](/images/accesskey.png)
+
+例：
+
+        &lt;<span class="operator">a</span> href=<span class="string">"/about"</span> accesskey=<span class="string">"a"</span>&gt;alt + <span class="operator">a</span>&lt;/<span class="operator">a</span>&gt;
+
+&lt;<span class="operator">a</span> href=<span class="string">"/about"</span> accesskey=<span class="string">"a"</span>&gt;alt + <span class="operator">a</span>&lt;/<span class="operator">a</span>&gt;
+
+        &lt;<span class="operator">a</span> href=<span class="string">"/whole"</span> accesskey=<span class="string">"w"</span>&gt;alt + w&lt;/<span class="operator">a</span>&gt;
+
+&lt;<span class="operator">a</span> href=<span class="string">"/whole"</span> accesskey=<span class="string">"w"</span>&gt;alt + w&lt;/<span class="operator">a</span>&gt;
+
+对于accesskey也可以设置组合键，在HTML5中任何元素都可以设置accesskey属性，会做验证，但是不一定有用
+</code></pre><ul>
+<li><p>class=”className”，设置元素的样式类名，多个类名用空格分隔，在HTML5中能运用到任何元素上</p>
+</li>
+<li><p>contenteditable=”true/false”，设置元素是否可编辑，如果父元素设置这个属性，子元素会继承这个属性</p>
+</li>
+<li><p>contextmenu=”menuID”，仅有Firefox支持，先不做解释</p>
+</li>
+<li><p>data-*=”value”，HTML5中自定义属性一般以data-开头，属性名不能包含大写字母</p>
+<p>  例：</p>
+<pre><code>      <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">li</span> <span class="attribute">data-animal-type</span>=<span class="value">"bird"</span>&gt;</span>Owl<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">li</span> <span class="attribute">data-animal-type</span>=<span class="value">"fish"</span>&gt;</span>Salmon<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">li</span> <span class="attribute">data-animal-type</span>=<span class="value">"spider"</span>&gt;</span>Tarantula<span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</code></pre></li>
+<li><p>css的content属性，可以通用attr()来获取元素的属性值</p>
+<p>  例：</p>
+<pre><code>      <span class="attribute">div{content</span>: <span class="string">attr(title)}   //获取当前元素title的值</span>
+</code></pre></li>
+<li><p>设置元素的{resize:both;overflow:auto;}可以由用户调整元素的大小</p>
+</li>
+<li><p>dir=”ltr/rtl/auto”，设置文本的显示方向</p>
+<ul>
+<li><p>ltr，默认值，从左向右显示</p>
+</li>
+<li><p>rtl，从右向左显示，比如阿拉伯文</p>
+</li>
+<li><p>auto，基于内容，让浏览器自动识别</p>
+</li>
+</ul>
+</li>
+<li><p>draggable=”true/false/auto”，设置元素是否可以拖动</p>
+</li>
+<li><p>dropzone=”copy/move/link”，指定是否将数据复制、移动、或链接，没有浏览器支持</p>
+</li>
+<li><p>hidden=”hidden”，设置元素为隐藏</p>
+</li>
+<li><p>id，设置元素的唯一id，一个文档中不能出现同名的id</p>
+</li>
+<li><p>lang=”language_code”，设置元素中内容的语言代码</p>
+</li>
+<li><p>spellcheck=”true/false”，检测元素是否拼写错误</p>
+</li>
+<li><p>style=”style_definitions”，设置元素的行业样式</p>
+</li>
+<li><p>tabindex=”number”，设置元素的TAB键控制顺序</p>
+</li>
+<li><p>title=”text”，设置元素鼠标移上去显示的信息</p>
+</li>
+<li><p>translate=”yes/no”，指定一个元素的内容在页面载入时是否需要翻译</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="post-footer">
+      
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/html/">html</a></li></ul>
+
+    </footer>
+  </article>
+  <section class="site-comment" id="comments">
+    <div class="ds-thread" data-thread-key="http://m.jayself.com/2014/04/21/html_global_attr/" data-title="HTML全局属性" data-url="/2014/04/21/html_global_attr/"></div>
+  </section>
+
+</section>
+  </main>
+  <footer class="m-footer">
+	<div class="container">
+	  <span>&copy; 2014 Jay.Zhang</span>
+	</div>
+</footer>
+<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/duoshuo.js"></script>
+</body>
+</html>
