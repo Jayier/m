@@ -1,4 +1,5 @@
-var duoshuoQuery = {short_name:"jayself"};
+
+var duoshuoQuery = {short_name:"mjayself"};
 (function() {
 	var ds = document.createElement('script');
 	ds.type = 'text/javascript';ds.async = true;
