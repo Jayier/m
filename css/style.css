@@ -238,8 +238,6 @@ code {
     border-radius: 3px;
     border: 1px solid #ddd;
     padding: 0 5px;
-    word-break: break-all;
-    white-space: pre-wrap;
 }
 pre {
     padding: 10px;
@@ -247,6 +245,7 @@ pre {
     -webkit-border-radius: 4px;
     border-radius: 4px;
     border: 1px solid #ddd;
+    word-wrap: normal;
 }
 pre code {
     border: none;
@@ -255,6 +254,7 @@ pre code {
     background-color: #23241f;
     color: #8e908c;
     overflow: auto;
+    white-space: inherit;
 }
 .highlight {
     background: #eee;
